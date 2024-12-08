@@ -6,7 +6,7 @@ from time import perf_counter
 
 nclasses = 10
 b_size = 128
-epoch = 25
+epoch = 10
 #Classe contenant le modèle 
 class my_class(nn.Module):
     def __init__(self,hidden):
@@ -111,8 +111,8 @@ def main():
     #Init des fonctions 
     tensor = tv.transforms.ToTensor()
     #Chargement des données 
-    train_set = tv.datasets.CIFAR10("C:\\Users\\Alex\\Desktop\\Cours\\CHPS0906" ,download=True ,train=True, transform=tensor)
-    valid_set = tv.datasets.CIFAR10("C:\\Users\\Alex\\Desktop\\Cours\\CHPS0906", train=False,download=True, transform=tensor)
+    train_set = tv.datasets.CIFAR10("." ,download=True ,train=True, transform=tensor)
+    valid_set = tv.datasets.CIFAR10(".", train=False,download=True, transform=tensor)
 
     #transformation en tensor, format [Nb_batches,Channels,largeur,hauteur]
     data_train_load = torch.utils.data.DataLoader(train_set,batch_size=b_size,shuffle=True)

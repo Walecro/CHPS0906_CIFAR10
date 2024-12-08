@@ -61,6 +61,9 @@ def fit_one_cycle(epoch,data_train_load,data_valid_load,myclass):
         #Batch est du format : [Num_images,channel_rgb, height, width]
         #32 images et les 32 labels correspondant
         for batch,label in iter_train:
+
+            batch = batch.to('cuda')
+            label = label.to('cuda')
             #reset gradients to 0
             opt.zero_grad()
 
@@ -84,6 +87,9 @@ def fit_one_cycle(epoch,data_train_load,data_valid_load,myclass):
         acc_cum = 0
         for batch,label in iter_valid:
             
+            batch = batch.to('cuda')
+            label = label.to('cuda')
+
             
             # Validation sur des batchs de 32 images
             out= myclass(batch)
@@ -104,6 +110,9 @@ def main():
     #Init des fonctions 
     tensor = tv.transforms.ToTensor()
     
+    dev = torch.device("cuda") if torch.cuda.is_available() else torch.device("cpu")
+
+    myclass.to(dev)
 
 
     #Chargement des données 

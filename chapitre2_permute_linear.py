@@ -60,8 +60,7 @@ def fit_one_cycle(epoch,data_train_load,data_valid_load,myclass):
             batch = batch.reshape(-1,32*32*3)
             
             out = myclass(batch)      
-            print(out.size())
-            print(label.size())          
+         
             #Compute loss
             loss = lossFn(out, label)
 
